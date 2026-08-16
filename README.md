@@ -101,29 +101,6 @@ Anatomiq/
 ├── README.md
 ├── .gitignore
 └── ...
-
-🎓 Project Purpose
-
-Anatomiq was developed as an interactive educational anatomy project focused on combining:
-
-3D visualization
-Interactive learning
-Anatomy exploration
-Knowledge assessment
-Modern web technologies
-
-The goal is to make learning human anatomy more engaging through interactive 3D visualization and quizzes.
-
-👨‍💻 Author
-Soumyadip Chattopadhyay
-
-Computer Science Student
-Interested in Artificial Intelligence, Machine Learning, Cloud Computing, and Full Stack Development.
-
-Connect
-LinkedIn: https://www.linkedin.com/in/soumyadip-chattopadhyay-338343330/
-GitHub: https://github.com/Soumyadip-2004499
-
 📄 License
 
 This project is intended for educational and portfolio purposes.
