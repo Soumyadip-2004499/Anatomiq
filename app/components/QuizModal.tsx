@@ -37,10 +37,12 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
   // Automatically scroll the webpage to the quiz modal on mobile, as requested by the user.
   useEffect(() => {
     if (window.innerWidth < 768 && modalRef.current) {
-      modalRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      setTimeout(() => {
+        modalRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }, 150);
     }
   }, []);
 

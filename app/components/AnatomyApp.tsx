@@ -211,12 +211,15 @@ export function AnatomyApp({ locale, dictionary }: { locale: LocaleConfig; dicti
                       {organId === item.id && <Heart className="favorite" size={14} fill="currentColor" />}
                     </button>
                     <div className="sidebar-quiz-container">
-                      <button 
-                        type="button"
-                        className="sidebar-quiz-btn"
-                        onClick={() => setMcqQuizId(item.id)}
-                        aria-label={`Take ${item.name} Quiz`}
-                      >
+                        <button 
+                          type="button"
+                          className="sidebar-quiz-btn"
+                          onClick={() => {
+                            setMcqQuizId(item.id);
+                            setMobileLibrary(false);
+                          }}
+                          aria-label={`Take ${item.name} Quiz`}
+                        >
                         <CircleHelp size={14} /> Take Quiz
                       </button>
                     </div>
