@@ -543,6 +543,12 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
 @media (max-width: 760px) {
   .quiz-modal {
     width: min(460px, calc(100vw - 24px));
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    animation: modal-in .35s cubic-bezier(.2,.85,.3,1);
+    max-height: 85vh;
   }
 }
 @keyframes modal-in { from { opacity: 0; transform: translateY(14px) scale(.98); } }
@@ -646,11 +652,12 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
     z-index: 42;
     left: 8px;
     right: 8px;
-    bottom: 8px;
+    top: 66px;
+    bottom: auto;
     height: min(76vh, 650px);
-    transform: translateY(110%);
+    transform: translateY(-120%);
     border-radius: 26px;
-    background: #fffaf3;
+    background: var(--paper);
   }
   .organ-library.open { transform: translateY(0); }
   .panel-heading .mobile-close { display: grid; margin-inline-start: auto; margin-inline-end: 7px; }
