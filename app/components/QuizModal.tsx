@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Check, ArrowRight, RotateCcw } from "lucide-react";
 import confetti from "canvas-confetti";
 import type { OrganId } from "../lib/anatomy-data";
@@ -32,6 +32,17 @@ type QuizState = {
 
 export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
   const [state, setState] = useState<QuizState | null>(null);
+  const modalRef = useRef<HTMLElement>(null);
+
+  // Automatically scroll the webpage to the quiz modal on mobile, as requested by the user.
+  useEffect(() => {
+    if (window.innerWidth < 768 && modalRef.current) {
+      modalRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, []);
 
   const initQuiz = () => {
     const bank = questionBank[organId] || [];
@@ -81,7 +92,7 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
   if (state.questions.length === 0) {
     return (
       <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
-        <section className="learning-modal quiz-modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
+        <section ref={modalRef} className="learning-modal quiz-modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={onClose} aria-label="Close"><X size={18} /></button>
           <h2>Quiz Unavailable</h2>
           <p>Sorry, there are no questions available for the {organName} yet.</p>
@@ -96,7 +107,7 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
     const percentage = Math.round((score / questions.length) * 100);
     return (
       <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
-        <section className="learning-modal quiz-modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
+        <section ref={modalRef} className="learning-modal quiz-modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={onClose} aria-label="Close"><X size={18} /></button>
           <span className="modal-icon">{percentage >= 80 ? "★" : "✓"}</span>
           <h2>Quiz Complete</h2>
@@ -158,7 +169,7 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
 
   return (
     <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className="learning-modal quiz-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(e) => e.stopPropagation()}>
+      <section ref={modalRef} className="learning-modal quiz-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Close"><X size={18} /></button>
         
         <header className="quiz-header">
