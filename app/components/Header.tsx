@@ -75,8 +75,9 @@ export function Header({
                 return;
               }
 
-              const x = e.clientX;
-              const y = e.clientY;
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = rect.left + rect.width / 2;
+              const y = rect.top + rect.height / 2;
               const endRadius = Math.hypot(
                 Math.max(x, window.innerWidth - x),
                 Math.max(y, window.innerHeight - y)
