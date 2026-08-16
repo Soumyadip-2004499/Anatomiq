@@ -1,0 +1,9 @@
+# Build output and local tool state from the Cloudflare/vinext target.
+# Everything else must stay: tsconfig type-checks `**/*.ts`, and vite.config.ts
+# and drizzle.config.ts import from build/, worker/, and db/ — removing those
+# would fail `next build` at the TypeScript step.
+dist
+.wrangler
+.vinext
+outputs
+work
