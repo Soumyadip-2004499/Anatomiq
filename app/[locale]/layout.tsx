@@ -1,9 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { getLocale, isLocale, localeCodes, locales } from "../i18n/config";
-import { fontClassName } from "../i18n/fonts";
 import { getDictionary } from "../i18n/dictionaries";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "../globals.css";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-serif",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-sans",
+});
 
 export function generateStaticParams() {
   return localeCodes.map((locale) => ({ locale }));
@@ -84,7 +95,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={config.code} dir={config.dir} suppressHydrationWarning>
-      <body className={fontClassName(config.script)}>
+      <body className={`${cormorant.variable} ${dmSans.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
