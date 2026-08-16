@@ -178,6 +178,8 @@ This combination creates a balance between an elegant medical reference aestheti
 
 ---
 
+© 2026 Soumyadip Chattopadhyay. Built with curiosity.
+
 ## 🏗️ Project Structure
 
 ```text
