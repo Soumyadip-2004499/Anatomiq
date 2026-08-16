@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { Moon, Sun, Search, LibraryBig, NotebookPen, Menu } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { LocaleConfig } from "../i18n/config";
 import type { UiDictionary } from "../i18n/types";
 import { locales } from "../i18n/config";
@@ -45,6 +45,7 @@ export function Header({
 }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const themeButtonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => setMounted(true), []);
 
   return (
@@ -63,6 +64,7 @@ export function Header({
         <LanguageSwitcher locale={locale} t={t} />
         {mounted && (
           <button
+            ref={themeButtonRef}
             className="theme-toggle"
             onClick={(e) => {
               const nextTheme = theme === "dark" ? "light" : "dark";
@@ -75,9 +77,17 @@ export function Header({
                 return;
               }
 
-              const rect = e.currentTarget.getBoundingClientRect();
-              const x = rect.left + rect.width / 2;
-              const y = rect.top + rect.height / 2;
+              let x = e.clientX;
+              let y = e.clientY;
+
+              // On mobile screens, touch events can pass synthetic or inaccurate coordinates.
+              // We strictly force the origin to the physical button's center, as requested.
+              // We also fallback to this if coordinates are 0 on desktop.
+              if ((window.innerWidth < 768 || (x === 0 && y === 0)) && themeButtonRef.current) {
+                const rect = themeButtonRef.current.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+              }
               const endRadius = Math.hypot(
                 Math.max(x, window.innerWidth - x),
                 Math.max(y, window.innerHeight - y)
