@@ -78,12 +78,31 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
 
   useEffect(() => {
     if (state?.isFinished && state.questions.length > 0 && state.score === state.questions.length) {
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        zIndex: 9999
-      });
+      if (window.innerWidth < 768) {
+        // Mobile behavior: shower from top-left and top-right
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { x: 0, y: 0 },
+          angle: 315,
+          zIndex: 9999
+        });
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { x: 1, y: 0 },
+          angle: 225,
+          zIndex: 9999
+        });
+      } else {
+        // Desktop behavior: keep unchanged
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          zIndex: 9999
+        });
+      }
     }
   }, [state?.isFinished, state?.score, state?.questions.length]);
 
