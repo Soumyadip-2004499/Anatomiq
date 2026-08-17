@@ -578,6 +578,9 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   width: 100%;
 }
 .quiz-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 16px 20px;
   border: 1px solid var(--line);
   border-radius: 12px;
