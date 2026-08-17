@@ -77,20 +77,9 @@ export function Header({
                 return;
               }
 
-              let x = e.clientX;
-              let y = e.clientY;
-
-              // On mobile screens, touch events can pass synthetic or inaccurate coordinates.
-              // We strictly force the origin to the physical button's center, as requested.
-              // We also fallback to this if coordinates are 0 on desktop.
-              if ((window.innerWidth < 768 || (x === 0 && y === 0)) && themeButtonRef.current) {
-                const rect = themeButtonRef.current.getBoundingClientRect();
-                x = rect.left + rect.width / 2;
-                y = rect.top + rect.height / 2;
-              }
               const endRadius = Math.hypot(
-                Math.max(x, window.innerWidth - x),
-                Math.max(y, window.innerHeight - y)
+                window.innerWidth,
+                window.innerHeight
               );
 
               const transition = document.startViewTransition(() => {
@@ -101,8 +90,8 @@ export function Header({
                 document.documentElement.animate(
                   {
                     clipPath: [
-                      `circle(0px at ${x}px ${y}px)`,
-                      `circle(${endRadius}px at ${x}px ${y}px)`,
+                      `circle(0px at 100% 0%)`,
+                      `circle(${endRadius}px at 100% 0%)`,
                     ],
                   },
                   {

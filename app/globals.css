@@ -67,6 +67,7 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
   min-height: 100vh;
   padding: 22px 24px 24px;
   overflow: hidden;
+  will-change: opacity;
 }
 
 .topbar {
@@ -577,22 +578,20 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   width: 100%;
 }
 .quiz-option-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
+  padding: 16px 20px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper);
   color: var(--ink);
   cursor: pointer;
   text-align: left;
-  transition: all 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
   width: 100%;
 }
 .quiz-option-btn:hover:not(:disabled) {
   background: var(--canvas);
   border-color: var(--muted);
+  transform: translateY(-1px);
 }
 .quiz-option-btn.correct { background: #e6f2e8; border-color: #5c9e6b; color: #2f5c3c; }
 .quiz-option-btn.incorrect { background: #fbe7e5; border-color: #d1584f; color: #8f382f; }
@@ -777,7 +776,7 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
     color: var(--muted);
     font: 500 12px var(--font-sans), sans-serif;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     z-index: 10;
     backdrop-filter: blur(8px);
   }
@@ -1095,9 +1094,33 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   color: rgba(255, 255, 255, 0.7);
 }
 
+.intro-loading {
+  position: absolute;
+  left: 50%;
+  bottom: 18vh;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font: 500 1.5vw/1 var(--font-sans), sans-serif;
+  z-index: 3;
+}
+
+.spinner {
+  animation: intro-spin 1s linear infinite;
+}
+
+@keyframes intro-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @media (max-width: 768px) {
   .intro-content { margin-left: 8vw; }
   .intro-build { font-size: 14vw; }
   .intro-curiosity { font-size: 10vw; }
   .intro-author { font-size: 4vw; margin-top: 12px; }
+  .intro-loading { font-size: 3.5vw; bottom: 13vh; }
 }
