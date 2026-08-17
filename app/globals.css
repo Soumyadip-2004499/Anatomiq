@@ -65,13 +65,13 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 
 .app-shell {
   min-height: 100vh;
-  padding: 22px 24px 24px;
+  padding: 0 24px 24px;
   overflow: hidden;
   will-change: opacity;
 }
 
 .topbar {
-  height: 68px;
+  height: 56px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -620,7 +620,7 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
 .drawer-backdrop { display: none; }
 
 @media (max-width: 1350px) {
-  .app-shell { padding: 16px; }
+  .app-shell { padding: 4px 16px 16px; }
   .topbar { grid-template-columns: 1fr auto auto auto; gap: 12px; }
   .search-box { display: none; }
   .workspace { grid-template-columns: 250px minmax(500px,1fr) 300px; height: min(700px, calc(100vh - 105px)); }
@@ -641,13 +641,13 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
 }
 
 @media (max-width: 760px) {
-  .app-shell { padding: 10px; overflow: hidden; }
-  .topbar { height: 58px; grid-template-columns: 1fr auto auto auto; }
+  .app-shell { padding: 0 10px 10px; overflow: hidden; }
+  .topbar { height: 48px; grid-template-columns: 1fr auto auto auto; }
   .brand strong { font-size: 29px; }
   .main-nav { display: none; }
   .profile span { width: 34px; height: 34px; }
   .mobile-library-trigger { display: flex; }
-  .workspace { display: block; margin-top: 8px; }
+  .workspace { display: block; margin-top: 4px; }
   .viewer-shell { height: 68vh; min-height: 520px; border-radius: 22px; }
   .organ-library {
     position: fixed;
