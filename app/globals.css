@@ -529,18 +529,31 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
 .learning-modal { width: min(460px, 100%); max-height: min(92vh, 900px); overflow: auto; scrollbar-width: none; position: relative; padding: 32px; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); box-shadow: var(--shadow); text-align: center; animation: modal-in .35s cubic-bezier(.2,.85,.3,1); }
 .learning-modal.wide { width: min(540px, 100%); }
 
+.quiz-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
 .quiz-modal {
   position: fixed;
-  top: 38%;
+  top: 100px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(460px, calc(100vw - 40px));
+  transform: translateX(-50%);
+  width: min(460px, calc(100% - 40px));
   margin: 0;
   animation: quiz-modal-in .35s cubic-bezier(.2,.85,.3,1);
+  z-index: 10000;
 }
 @keyframes quiz-modal-in {
-  from { opacity: 0; transform: translate(-50%, calc(-50% + 14px)) scale(.98); }
+  from { opacity: 0; transform: translateX(-50%) translateY(14px) scale(.98); }
 }
+
 @media (max-width: 760px) {
   .quiz-modal {
     width: min(460px, calc(100vw - 24px));
@@ -552,6 +565,7 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
     max-height: 85vh;
   }
 }
+
 @keyframes modal-in { from { opacity: 0; transform: translateY(14px) scale(.98); } }
 .modal-close { position: absolute; top: 13px; inset-inline-end: 13px; width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
 .modal-icon { width: 56px; height: 56px; display: grid; place-items: center; margin: 0 auto 12px; border-radius: 50%; background: rgba(237,126,105,.1); color: var(--coral); font: 500 26px var(--font-serif), serif; }
@@ -1111,12 +1125,16 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   z-index: 3;
 }
 
-.spinner {
-  animation: intro-spin 1s linear infinite;
+.elegant-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top-color: rgba(255, 255, 255, 0.9);
+  animation: elegant-spin 0.85s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-@keyframes intro-spin {
-  from { transform: rotate(0deg); }
+@keyframes elegant-spin {
   to { transform: rotate(360deg); }
 }
 

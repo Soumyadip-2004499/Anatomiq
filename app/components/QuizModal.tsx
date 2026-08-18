@@ -112,7 +112,7 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
 
   if (state.questions.length === 0) {
     return (
-      <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
+      <div className="modal-backdrop quiz-backdrop" role="presentation" onMouseDown={onClose}>
         <section ref={modalRef} className="learning-modal quiz-modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={onClose} aria-label="Close"><X size={18} /></button>
           <h2>Quiz Unavailable</h2>
@@ -127,7 +127,7 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
   if (isFinished) {
     const percentage = Math.round((score / questions.length) * 100);
     return (
-      <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
+      <div className="modal-backdrop quiz-backdrop" role="presentation" onMouseDown={onClose}>
         <section ref={modalRef} className="learning-modal quiz-modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
           <button className="modal-close" onClick={onClose} aria-label="Close"><X size={18} /></button>
           <span className="modal-icon">{percentage >= 80 ? "★" : "✓"}</span>
@@ -189,7 +189,7 @@ export function QuizModal({ organId, organName, onClose }: QuizModalProps) {
   };
 
   return (
-    <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
+    <div className="modal-backdrop quiz-backdrop" role="presentation" onMouseDown={onClose}>
       <section ref={modalRef} className="learning-modal quiz-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Close"><X size={18} /></button>
         

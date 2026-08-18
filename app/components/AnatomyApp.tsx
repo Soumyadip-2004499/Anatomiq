@@ -131,11 +131,18 @@ export function AnatomyApp({ locale, dictionary }: { locale: LocaleConfig; dicti
 
   useEffect(() => {
     if (!contentRef.current) return;
+    
+    if (introActive) {
+      // Hide the elements immediately so they don't flash before the animation starts
+      gsap.set(contentRef.current.querySelectorAll("[data-reveal]"), { opacity: 0, y: 8 });
+      return;
+    }
+    
     gsap.fromTo(contentRef.current.querySelectorAll("[data-reveal]"),
       { opacity: 0, y: 8 },
       { opacity: 1, y: 0, duration: 0.48, stagger: 0.035, ease: "power2.out", overwrite: true },
     );
-  }, [organId]);
+  }, [organId, introActive]);
 
   const selectOrgan = (id: OrganId) => {
     if (organById[id].illustrated) {
@@ -319,11 +326,12 @@ export function AnatomyApp({ locale, dictionary }: { locale: LocaleConfig; dicti
         </article>
       </section>
 
-      {modal && <LearningModal type={modal} organ={organ} t={t} onClose={() => setModal(null)} />}
-      {mcqQuizId && <QuizModal organId={mcqQuizId} organName={organById[mcqQuizId].name} onClose={() => setMcqQuizId(null)} />}
-      {mobileLibrary && <button className="drawer-backdrop" aria-label={t.library.close} onClick={() => setMobileLibrary(false)} />}
       <Footer />
     </main>
+    
+    {modal && <LearningModal type={modal} organ={organ} t={t} onClose={() => setModal(null)} />}
+    {mcqQuizId && <QuizModal organId={mcqQuizId} organName={organById[mcqQuizId].name} onClose={() => setMcqQuizId(null)} />}
+    {mobileLibrary && <button className="drawer-backdrop" aria-label={t.library.close} onClick={() => setMobileLibrary(false)} />}
     </>
   );
 }

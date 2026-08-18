@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Loader2 } from "lucide-react";
 
 export function IntroScreen({
   onComplete,
@@ -41,23 +40,23 @@ export function IntroScreen({
       },
     });
 
-    // 0s -> 3s: ONLY "Build With Creativity" is visible.
-    // 3s: "By Soumyadip Chattopadhyay" elegantly appears.
+    // 0s -> 1s: ONLY "Build With Creativity" is visible.
+    // 1s: "By Soumyadip Chattopadhyay" elegantly appears.
     tl.to(authorRef.current, {
       opacity: 1,
       duration: 0.8,
       ease: "power2.inOut",
-    }, 3); // Absolute time 3 seconds
+    }, 1); // Absolute time 1 second
 
-    // 6s: "Loading + loading GIF" elegantly appears.
+    // 2s: "Loading + loading GIF" elegantly appears.
     tl.to(loadingRef.current, {
       opacity: 1,
       duration: 0.8,
       ease: "power2.inOut",
-    }, 6); // Absolute time 6 seconds
+    }, 2); // Absolute time 2 seconds
 
-    // 9s: Transition smoothly to the main Anatomiq page.
-    const exitTime = 9;
+    // 3s: Transition smoothly to the main Anatomiq page.
+    const exitTime = 3;
 
     if (prefersReducedMotion) {
       // Simpler transition for reduced motion
@@ -116,10 +115,10 @@ export function IntroScreen({
           <h1 className="intro-build">Build</h1>
           <h2 className="intro-curiosity">With Creativity</h2>
         </div>
-        <p className="intro-author" ref={authorRef}>By Soumyadip Chattopadhyay</p>
+        <p className="intro-author" ref={authorRef} style={{ opacity: 0 }}>By Soumyadip Chattopadhyay</p>
       </div>
-      <div className="intro-loading" ref={loadingRef}>
-        <Loader2 className="spinner" size={18} />
+      <div className="intro-loading" ref={loadingRef} style={{ opacity: 0 }}>
+        <div className="elegant-spinner"></div>
         <span>Loading</span>
       </div>
     </div>
