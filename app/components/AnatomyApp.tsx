@@ -327,11 +327,11 @@ export function AnatomyApp({ locale, dictionary }: { locale: LocaleConfig; dicti
       </section>
 
       <Footer />
+      {mobileLibrary && <button className="drawer-backdrop" aria-label={t.library.close} onClick={() => setMobileLibrary(false)} />}
     </main>
     
     {modal && <LearningModal type={modal} organ={organ} t={t} onClose={() => setModal(null)} />}
     {mcqQuizId && <QuizModal organId={mcqQuizId} organName={organById[mcqQuizId].name} onClose={() => setMcqQuizId(null)} />}
-    {mobileLibrary && <button className="drawer-backdrop" aria-label={t.library.close} onClick={() => setMobileLibrary(false)} />}
     </>
   );
 }
