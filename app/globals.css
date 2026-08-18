@@ -168,8 +168,8 @@ button:focus-visible, input:focus-visible, canvas:focus-visible {
 
 .workspace {
   max-width: 1720px;
-  height: min(760px, calc(100vh - 128px));
-  min-height: 620px;
+  height: min(700px, calc(100vh - 128px));
+  min-height: 500px;
   margin: 12px auto 0;
   display: grid;
   grid-template-columns: 285px minmax(620px, 1fr) 330px;
@@ -637,7 +637,7 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   .app-shell { padding: 4px 16px 16px; }
   .topbar { grid-template-columns: 1fr auto auto auto; gap: 12px; }
   .search-box { display: none; }
-  .workspace { grid-template-columns: 250px minmax(500px,1fr) 300px; height: min(700px, calc(100vh - 105px)); }
+  .workspace { grid-template-columns: 250px minmax(500px,1fr) 300px; height: min(650px, calc(100vh - 105px)); min-height: 480px; }
   .learning-cards { grid-template-columns: repeat(3, 1fr); --art-max: 300px; }
 }
 
@@ -645,13 +645,12 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   .topbar { grid-template-columns: 1fr auto auto auto; }
   .main-nav button span { display: none; }
   .main-nav button { padding: 10px; }
-  .workspace { grid-template-columns: 210px minmax(450px,1fr); height: 690px; }
+  .workspace { grid-template-columns: 210px minmax(450px,1fr); height: auto; }
   .info-panel { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 12px 22px; max-height: none; }
   .info-panel .description, .info-panel .rule, .info-panel h2, .key-facts, .medical-note { grid-column: 2; }
   .info-kicker, .info-title-row { grid-column: 1; }
-  .info-panel { height: 330px; }
-  .workspace { height: auto; }
-  .organ-library, .viewer-shell { height: 650px; }
+  .info-panel { height: auto; min-height: 280px; }
+  .organ-library, .viewer-shell { height: 500px; }
 }
 
 @media (max-width: 760px) {
@@ -662,17 +661,17 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   .profile span { width: 34px; height: 34px; }
   .mobile-library-trigger { display: flex; }
   .workspace { display: block; margin-top: 4px; }
-  .viewer-shell { height: 68vh; min-height: 520px; border-radius: 22px; }
+  .viewer-shell { height: 55vh; min-height: 420px; border-radius: 22px; }
   .organ-library {
     position: fixed;
     z-index: 42;
     left: 8px;
     right: 8px;
-    top: 66px;
+    top: 0;
     bottom: auto;
     height: min(76vh, 650px);
     transform: translateY(-120%);
-    border-radius: 26px;
+    border-radius: 0 0 26px 26px;
     background: var(--paper);
   }
   .organ-library.open { transform: translateY(0); }
@@ -699,7 +698,7 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
 
 @media (max-width: 470px) {
   .brand strong { font-size: 25px; }
-  .viewer-shell { min-height: 485px; height: 66vh; }
+  .viewer-shell { min-height: 380px; height: 50vh; }
   .organ-list { grid-template-columns: 1fr; }
   .learning-cards { grid-template-columns: 1fr; --art-max: 360px; }
   .organ-library .view-all { margin-bottom: 8px; }
