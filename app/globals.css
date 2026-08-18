@@ -665,9 +665,9 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   .organ-library {
     position: fixed;
     z-index: 42;
-    left: 8px;
-    right: 8px;
-    top: 0;
+    left: -10px;
+    right: -10px;
+    top: 48px;
     bottom: auto;
     height: min(76vh, 650px);
     transform: translateY(-120%);
@@ -676,7 +676,7 @@ button.organ-card-image:focus-visible { outline: 2px solid #8b6fc4; outline-offs
   }
   .organ-library.open { transform: translateY(0); }
   .panel-heading .mobile-close { display: grid; margin-inline-start: auto; margin-inline-end: 7px; }
-  .drawer-backdrop { display: block; position: fixed; inset: 0; z-index: 40; border: 0; background: rgba(52,39,30,.24); backdrop-filter: blur(5px); }
+  .drawer-backdrop { display: block; position: fixed; top: 48px; left: -10px; right: -10px; bottom: -10px; z-index: 40; border: 0; background: rgba(52,39,30,.24); backdrop-filter: blur(5px); }
   .organ-list { display: grid; grid-template-columns: 1fr 1fr; }
   .organ-item { min-height: 76px; }
   .info-panel { height: auto; margin-top: 10px; display: block; border-radius: 22px; }
